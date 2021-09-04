@@ -1,0 +1,31 @@
+
+1) Shell script to count how many executable commands are in your current PATH.
+#!/bin/bash
+find </path> -type -f executable -print | wc -l
+
+2) You need to create a backup script which will run every hour, how do you make sure that your script is not already running when you run the script - write a short script that will handle this scenario and will exit with the message “Previous <command> is still running” in case the script is still in the background so that there is no conflict.
+* 1/* * * * sh shell.sh
+vi shell.sh
+if [ -f /path.sh]; then
+echo "script is present"
+  if [ ps -ef | grep path.sh]; then
+      echo "script is still running"     
+fi
+fi
+
+FROM $runtime
+MAINTAINER suresh@mail.com
+RUN apt-get update \
+    apt-get install nginx
+CMD [sh service nginx start]
+ENTRYPONT [sh </tmp/custom.sh>]
+EXPOSE 80
+COPY sourcepath /etc/conf/nginx/nginx.conf
+ADD suresh.tar.gz suresh
+
+docker pu imageID
+docker run -dti --name nginx -v /tmp/custom_conf:/etc/conf/nginx.conf imageid /bin/bash
+docker build -t custom_nginx dockerfilepath
+
+docker copy hostpath:containerpath containerid
+
